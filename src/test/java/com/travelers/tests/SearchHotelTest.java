@@ -1,7 +1,7 @@
 package com.travelers.tests;
 
 import com.travelers.helpers.TestListener;
-import com.travelers.configuration.BaseSeleniumTest;
+import com.travelers.utils.BaseSeleniumTest;
 import com.travelers.pages.HomePage;
 import com.travelers.pages.ResultPage;
 import org.testng.Assert;
@@ -9,6 +9,7 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
+import java.io.IOException;
 import java.util.List;
 
 @Listeners(TestListener.class)
@@ -38,9 +39,11 @@ public class SearchHotelTest extends BaseSeleniumTest {
     }
 
     @DataProvider
-    public Object[][] getData() {
+    public Object[][] getData() throws IOException {
+//        return ExcelHelper.readExcelFile(new File("src/main/resources/files/Dane.xlsx"));
         return new Object[][] {
                 {"Dubai", "13.12.2020", "20.12.2020", 2, 3},
+                {"Wroclaw", "13.12.2020", "20.12.2020", 2, 3},
 //                {"Wroclaw", "13.12.2020", "24.12.2020", 2, 4},
 //                {"Londek", "19.12.2020", "20.12.2020", 1, 2}
         };

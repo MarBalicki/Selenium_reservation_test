@@ -1,5 +1,6 @@
-package com.travelers.helpers;
+package com.travelers.utils;
 
+import com.travelers.helpers.NoSuchDriverException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeDriverService;
@@ -19,14 +20,13 @@ public class DriverFactory {
 
     public static WebDriver getDriver() throws NoSuchDriverException {
         if (driverInstance == null) {
-            getDriver(DriverType.IE);
+            getDriver(DriverType.CHROME);
         }
         return driverInstance;
     }
 
     public static WebDriver getDriver(DriverType driverType) throws NoSuchDriverException {
         if (driverInstance == null) {
-//            System.setProperty("webdriver.chrome.driver", driverPath);
             getSpecificDriver(driverType);
             driverInstance.manage().window().maximize();
         }
@@ -66,5 +66,9 @@ public class DriverFactory {
                 System.out.println("Brak drivera danego typu!");
                 throw new NoSuchDriverException();
         }
+    }
+
+    public static void resetDriver() {
+        driverInstance = null;
     }
 }

@@ -28,11 +28,14 @@ public class SeleniumHelper {
     }
 
     public void waitForElementToBeDisplayed(WebElement element) {
-        FluentWait<WebDriver> wait = new FluentWait<>(driver);
-        wait.withTimeout(Duration.ofSeconds(15))
-                .pollingEvery(Duration.ofMillis(1000))
-                .ignoring(NoSuchElementException.class);
-        wait.until(ExpectedConditions.visibilityOf(element));
+        try {
+            FluentWait<WebDriver> wait = new FluentWait<>(driver);
+            wait.withTimeout(Duration.ofSeconds(15))
+                    .pollingEvery(Duration.ofMillis(1000));
+            wait.until(ExpectedConditions.visibilityOf(element));
+        } catch (NoSuchElementException ex) {
+            System.out.println("Brak wyników");
+        }
     }
 
     public static void takeScreenShot(WebDriver driver) {
