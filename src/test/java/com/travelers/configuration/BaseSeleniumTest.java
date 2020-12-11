@@ -1,20 +1,19 @@
 package com.travelers.configuration;
 
+import com.travelers.helpers.DriverFactory;
+import com.travelers.helpers.DriverType;
+import com.travelers.helpers.NoSuchDriverException;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 
-public class BaseSeleniumTest {
+public abstract class BaseSeleniumTest {
 
     protected WebDriver driver;
 
     @BeforeTest
-    public void setUp() {
-        String driverPath = "C:\\Java\\Selenium_reservation_test" +
-                "\\src\\main\\resources\\executables.drivers\\chromedriver.exe";
-        System.setProperty("webdriver.chrome.driver", driverPath);
-        driver = new ChromeDriver();
+    public void setUp() throws NoSuchDriverException {
+        driver = DriverFactory.getDriver(DriverType.IE);
     }
 
     @AfterTest
