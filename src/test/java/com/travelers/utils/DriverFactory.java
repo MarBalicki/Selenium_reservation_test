@@ -1,6 +1,6 @@
 package com.travelers.utils;
 
-import com.travelers.helpers.NoSuchDriverException;
+import com.travelers.exceptions.NoSuchDriverException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeDriverService;
@@ -37,7 +37,7 @@ public class DriverFactory {
         switch (driverType) {
             case IE:
                 File IEDriverExe = new File("C:\\Java\\Selenium_reservation_test" +
-                        "\\src\\main\\resources\\executables.drivers\\IEDriverServer.exe");
+                        "\\src\\test\\resources\\executables.drivers\\IEDriverServer.exe");
                 InternetExplorerDriverService driverService = new InternetExplorerDriverService.Builder()
                         .usingDriverExecutable(IEDriverExe)
                         .usingAnyFreePort()
@@ -46,7 +46,7 @@ public class DriverFactory {
                 break;
             case CHROME:
                 File chromeDriverExe = new File("C:\\Java\\Selenium_reservation_test" +
-                        "\\src\\main\\resources\\executables.drivers\\chromedriver.exe");
+                        "\\src\\test\\resources\\executables.drivers\\chromedriver.exe");
                 ChromeDriverService chromeDriverService = new ChromeDriverService.Builder()
                         .usingDriverExecutable(chromeDriverExe)
                         .usingAnyFreePort()
@@ -55,7 +55,7 @@ public class DriverFactory {
                 break;
             case FIREFOX:
                 File firefoxDriverExe = new File("C:\\Java\\Selenium_reservation_test" +
-                        "\\src\\main\\resources\\executables.drivers\\chromedriver.exe");
+                        "\\src\\test\\resources\\executables.drivers\\chromedriver.exe");
                 GeckoDriverService geckoDriverService = new GeckoDriverService.Builder()
                         .usingDriverExecutable(firefoxDriverExe)
                         .usingAnyFreePort()
@@ -63,7 +63,7 @@ public class DriverFactory {
                 driverInstance = new FirefoxDriver(geckoDriverService);
                 break;
             default:
-                System.out.println("Brak drivera danego typu!");
+//                System.out.println("Brak drivera danego typu!");
                 throw new NoSuchDriverException();
         }
     }

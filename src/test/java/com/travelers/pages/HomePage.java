@@ -1,6 +1,7 @@
 package com.travelers.pages;
 
 import com.travelers.helpers.SeleniumHelper;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -48,6 +49,7 @@ public class HomePage {
 
     private final WebDriver driver;
     private final SeleniumHelper helper;
+    private final Logger log = Logger.getLogger(HomePage.class);
 
     public HomePage(WebDriver driver) {
         this.driver = driver;
@@ -56,20 +58,25 @@ public class HomePage {
     }
 
     public HomePage setCityHotel(String cityName) {
+        log.info("Setting city name");
         searchSpan.click();
         searchCityInput.sendKeys(cityName);
         helper.waitForElementToBeDisplayed(By.className("select2-result-label"));
         searchCityInput.sendKeys(Keys.ENTER);
+        log.info("City name is set");
         return this;
     }
 
     public HomePage setRangeDate(String checkinDate, String checkoutDate) {
+        log.info("Setting date range");
         checkinInput.sendKeys(checkinDate);
         checkoutInput.sendKeys(checkoutDate);
+        log.info("Date range is set");
         return this;
     }
 
-    public HomePage addTravelers(int adult, int child) {
+    public void addTravelers(int adult, int child) {
+        log.info("Setting travellers");
         travellersInput.click();
         helper.waitForElementToBeDisplayed(adultInput);
         adultInput.clear();
@@ -84,10 +91,11 @@ public class HomePage {
 //        while (child-- > 0) {
 //            childPlusBtn.click();
 //        }
-        return this;
+        log.info("Travellers are set");
     }
 
     public ResultPage performSearch() {
+        log.info("Search action performed");
         searchButton.click();
         return new ResultPage(driver);
     }

@@ -59,8 +59,4 @@ public class ExcelHelper {
         }
     }
 
-//    public static void main(String[] args) throws IOException {
-//        Object[][] data = readExcelFile(new File("src/main/resources/files/Dane.xlsx"));
-//        System.out.println(data[0][0]);
-//    }
 }
